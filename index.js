@@ -18,6 +18,15 @@ expressApp.get('/deals', async function (req, res) {
     res.send(await getDeals());
 });
 
+expressApp.post('/deals', async function (req, res) {
+    res.send(await addDeal(req.query.title, req.query.value, req.query.currency, req.query.user_id, req.query.person_id, req.query.org_id, req.query.stage_id,
+        req.query.status, req.query.expected_close_date, req.query.probability, req.query.lost_reason, req.query.visible_to, req.query.add_time));
+});
+
+// expressApp.get('/metrics', (req, res) => {
+
+// });
+
 class Deal {
     constructor(title, value, currency, user_id, person_id, org_id, stage_id, status, expected_close_date, probability, lost_reason, visible_to, add_time) {
         this.title = title;
@@ -73,7 +82,7 @@ async function addDeal(title, value, currency, user_id, person_id, org_id, stage
 
 async function updateDeal() {
     try {
-        console.log('Sending request...');
+        console.log('Sending PUT request...');
 
         const DEAL_ID = 1;  // id of the deal you want to update
         const data = {
