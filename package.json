@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --env-file=.env index.js",
+    "test": "jest --env-file=.env"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-jest": "^29.7.0",
     "express": "^4.19.2",
-    "pipedrive": "^23.2.0"
+    "pipedrive": "^23.2.0",
+    "ts-jest": "^29.2.4"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.25.3",
+    "jest": "^29.7.0"
   }
 }

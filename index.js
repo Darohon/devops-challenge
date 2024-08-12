@@ -1,13 +1,12 @@
 
 const express = require('express');
+const pipedrive = require('pipedrive');
+
 const expressApp = express();
 
-const pipedrive = require('pipedrive');
 const defaultClient = new pipedrive.ApiClient();
 const api = new pipedrive.DealsApi(defaultClient);
     
-// Configure authorization by settings api key
-// PIPEDRIVE_API_KEY is an environment variable that holds real api key
 defaultClient.authentications.api_key.apiKey = process.env.PIPEDRIVE_API_KEY;
 
 expressApp.listen(3000, () => {
@@ -52,6 +51,8 @@ async function getDeals() {
         const response = await api.getDeals();
 
         console.log('Got deals successfully!', response);
+
+        console.log(response.success);
 
         return response;
 
@@ -107,5 +108,7 @@ async function updateDeal() {
         console.log('Deal update failed', errorToLog);
     }
 }
+
+module.exports = getDeals;
 
 // addDeal('Deal of the century', 10000, 'USD', null, null, 1, 1, 'open', '2022-02-11', 60, null, 1, '2021-02-11');
